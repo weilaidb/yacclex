@@ -1,0 +1,82 @@
+/* runtime */
+
+menu_runtime(items)
+struct item *items;
+{
+	int visible = 0;
+	int choice = 0;
+	struct item *ptr;
+	char buf[BUFSIZ];
+
+	for(ptr = items; ptr->desc != 0; ptr++) {
+		addch('\n'); /* skip a line */
+		if(ptr->attribute == VISIBLE) {
+			visible++;
+			printw("\t%d) %s",visible,ptr->desc);
+		}
+	}
+
+	addstr("\n\n\t"); /* tab out so it looks nice */
+	refresh();
+
+	for(;;)
+	{
+		int i, nval;
+
+		getstr(buf);
+
+		/* numeric choice? */
+		nval = atoi(buf);
+
+		/* command choice ? */
+		i = 0;
+		for(ptr = items; ptr->desc != 0; ptr++) {
+			if(ptr->attribute != VISIBLE)
+				continue;
+			i++;
+			if(nval == i)
+				break;
+			if(!casecmp(buf, ptr->cmd))
+				break;
+		}
+
+		if(!ptr->desc)
+			continue;	/* no match */
+
+		switch(ptr->action)
+		{
+		case QUIT:
+			return 0;
+		case IGNORE:
+			refresh();
+			break;
+		case EXECUTE:
+			refresh();
+			system(ptr->act_str);
+			break;
+		case MENU:
+			refresh();
+			(*ptr->act_menu)();
+			break;
+		default:
+			printw("default case, no action\n");
+			refresh();
+			break;
+		}
+		refresh();
+	}
+}
+
+casecmp(char *p, char *q)
+{
+	int pc, qc;
+
+	for(; *p != 0; p++, q++) {
+		pc = tolower(*p);
+		qc = tolower(*q);
+
+		if(pc != qc)
+			break;
+	}
+	return pc-qc;
+}
