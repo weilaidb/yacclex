@@ -1,3 +1,6 @@
+digit[0-9]
+letter[A-Za-z]
+
 %{
 #include <string.h>
 #include <stdio.h>
@@ -12,11 +15,26 @@ int yywrap(void);
 int yywrap(void);
 
     int yylineno;
+
+
+    int nchar;
+    int nword;
+    int nline;
+
 %}
 %%
-^(.*)\n printf("%4d\t%s", yylineno++, yytext);
 
+\n         {nline++;nchar++;}
+[^\t\n]+   {nword++, nchar+=yyleng;}
+.          {nchar++;}
 %%
+
+
+// %%
+// ^(.*)\n printf("%4d\t%s", yylineno++, yytext);
+// %%
+
+
 int yywrap(void)
 {
 return 1;
@@ -53,5 +71,8 @@ int main(int argc, char **argv)
     #endif
     yylex();
     fclose(yyin);
+    printf("nchar\tnword\tnline\n");
+    printf("%d\t%d\t%d\n", nchar, nword, nline);
+
     return 0;
 }
