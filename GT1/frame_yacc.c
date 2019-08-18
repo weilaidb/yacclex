@@ -13,8 +13,11 @@
 #define yynerrs framenerrs
 
 
-#include <string.h>
+//#include <iostream>
 void yyerror(const char *s); 
+//int yywrap(void);
+int framelex(void);
+int yywrap(void);
 #ifndef YYSTYPE
 #define YYSTYPE int
 #endif
@@ -75,7 +78,7 @@ static const short yyrhs[] = {    -1
 
 #if YYDEBUG != 0
 static const short yyrline[] = { 0,
-     6
+     9
 };
 #endif
 
@@ -888,6 +891,12 @@ yyerrhandle:
 void yyerror(const char *s) 
 {
 }
+//int framelex(void)
+//{
+// return 1;
+//}
+
+
 int main() 
 {
  yyparse(); 

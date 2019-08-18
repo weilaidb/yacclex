@@ -1,5 +1,6 @@
 %{
 int yywrap(void);
+int yywrap(void);
 %}
 %%
 %%
@@ -7,6 +8,7 @@ int yywrap(void)
 {
  return 1;
 }
+
 
 
 //int main(int argc, char **argv)

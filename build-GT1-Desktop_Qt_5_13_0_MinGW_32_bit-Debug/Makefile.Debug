@@ -47,8 +47,8 @@ OBJECTS_DIR   = debug
 
 ####### Files
 
-SOURCES       = ..\GT1\main.cpp ..\GT1\frame_yacc.cpp \
-		..\GT1\frame_lex.cpp
+SOURCES       = ..\GT1\main.cpp ..\GT1\frame_yacc.c \
+		..\GT1\frame_lex.c
 OBJECTS       = debug/main.o \
 		debug/frame_yacc.o \
 		debug/frame_lex.o
@@ -64,7 +64,7 @@ DESTDIR_TARGET = debug\GT1.exe
 first: all
 all: Makefile.Debug  debug/GT1.exe
 
-debug/GT1.exe: D:/Qt/Qt5.13.0/5.13.0/mingw73_32/lib/libQt5Cored.a ../GT1/frame_yacc.cpp ../GT1/frame_lex.cpp $(OBJECTS) 
+debug/GT1.exe: D:/Qt/Qt5.13.0/5.13.0/mingw73_32/lib/libQt5Cored.a ../GT1/frame_yacc.c ../GT1/frame_lex.c $(OBJECTS) 
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)  $(LIBS)
 
 qmake: FORCE
@@ -91,17 +91,17 @@ check: first
 
 benchmark: first
 
-compiler_bison_make_all: ../GT1/frame_yacc.cpp
+compiler_bison_make_all: ../GT1/frame_yacc.c
 compiler_bison_clean:
-	-$(DEL_FILE) ..\GT1\frame_yacc.cpp ..\GT1\frame_yacc.hpp
-../GT1/frame_yacc.cpp: ../GT1/ydir/frame.y
-	bison -d -l -o ..\GT1\frame_yacc.cpp -p frame ..\GT1\ydir\frame.y
+	-$(DEL_FILE) ..\GT1\frame_yacc.c ..\GT1\frame_yacc.hpp
+../GT1/frame_yacc.c: ../GT1/ydir/frame.y
+	bison -d -l -o ..\GT1\frame_yacc.c -p frame ..\GT1\ydir\frame.y
 
-compiler_flex_make_all: ../GT1/frame_lex.cpp
+compiler_flex_make_all: ../GT1/frame_lex.c
 compiler_flex_clean:
-	-$(DEL_FILE) ..\GT1\frame_lex.cpp
-../GT1/frame_lex.cpp: ../GT1/ldir/frame.l
-	flex -Pframe -o..\GT1\frame_lex.cpp ..\GT1\ldir\frame.l
+	-$(DEL_FILE) ..\GT1\frame_lex.c
+../GT1/frame_lex.c: ../GT1/ldir/frame.l
+	flex -Pframe -o..\GT1\frame_lex.c ..\GT1\ldir\frame.l
 
 compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
@@ -134,11 +134,11 @@ compiler_clean: compiler_bison_clean compiler_flex_clean compiler_moc_predefs_cl
 debug/main.o: ../GT1/main.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\GT1\main.cpp
 
-debug/frame_yacc.o: ../GT1/frame_yacc.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\frame_yacc.o ..\GT1\frame_yacc.cpp
+debug/frame_yacc.o: ../GT1/frame_yacc.c 
+	$(CC) -c $(CFLAGS) $(INCPATH) -o debug\frame_yacc.o ..\GT1\frame_yacc.c
 
-debug/frame_lex.o: ../GT1/frame_lex.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\frame_lex.o ..\GT1\frame_lex.cpp
+debug/frame_lex.o: ../GT1/frame_lex.c 
+	$(CC) -c $(CFLAGS) $(INCPATH) -o debug\frame_lex.o ..\GT1\frame_lex.c
 
 ####### Install
 
