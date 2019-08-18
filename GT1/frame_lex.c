@@ -379,9 +379,18 @@ char *yytext;
 #line 1 "..\\GT1\\ldir\\frame.l"
 #define INITIAL 0
 #line 2 "..\\GT1\\ldir\\frame.l"
+#include <string.h>
+#include <stdio.h>
+#include <unistd.h>
+#define MAXPATH 1000
+
+
+#define TESTCASE
+
+
 int yywrap(void);
 int yywrap(void);
-#line 385 "..\\GT1\\frame_lex.c"
+#line 394 "..\\GT1\\frame_lex.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -532,9 +541,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 5 "..\\GT1\\ldir\\frame.l"
+#line 14 "..\\GT1\\ldir\\frame.l"
 
-#line 538 "..\\GT1\\frame_lex.c"
+#line 547 "..\\GT1\\frame_lex.c"
 
 	if ( yy_init )
 		{
@@ -619,10 +628,10 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 6 "..\\GT1\\ldir\\frame.l"
+#line 15 "..\\GT1\\ldir\\frame.l"
 ECHO;
 	YY_BREAK
-#line 626 "..\\GT1\\frame_lex.c"
+#line 635 "..\\GT1\\frame_lex.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1508,24 +1517,43 @@ int main()
 	return 0;
 	}
 #endif
-#line 6 "..\\GT1\\ldir\\frame.l"
+#line 15 "..\\GT1\\ldir\\frame.l"
 
 int yywrap(void)
 {
- return 1;
+return 1;
 }
 
 
 
-//int main(int argc, char **argv)
-//{
-//	if(argc < 2)
-//	{
-//		printf("==== show filename's linenum =====\n");
-//		printf("usage:app.exe filename\n");
-//		return -1;
-//	}
-//	yyin = fopen(argv[1], "r");
-//	yylex();
-//	fclose(yyin);
-//}
+int main(int argc, char **argv)
+{
+    printf("---- starting ------\n");
+    #ifdef TESTCASE
+    const char *filename = "test.txt";
+    yyin = fopen(filename, "r");
+    if(!yyin)
+    {
+        printf("open file failed:%s(%s)\n", filename, strerror(errno));
+        printf("argv[0]:%s\n", argv[0]);
+        printf("yyin   :%p\n", yyin);
+
+        char buffer[MAXPATH];
+        getcwd(buffer,MAXPATH);
+
+        printf("getcwd :%s\n", buffer);
+        return -1;
+    }
+    #else
+    if(argc < 2)
+    {
+        printf("==== show filename's linenum =====\n");
+        printf("usage:app.exe filename\n");
+        return -1;
+    }
+    yyin = fopen(argv[1], "r");
+    #endif
+    yylex();
+    fclose(yyin);
+    return 0;
+}

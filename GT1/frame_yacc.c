@@ -897,8 +897,9 @@ void yyerror(const char *s)
 //}
 
 
-int main() 
-{
- yyparse(); 
- return 0; 
-} 
+//int main()
+//{
+// printf("---- starting ------\n");
+//// yyparse();
+// return 0;
+//}
