@@ -301,16 +301,16 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 	*yy_cp = '\0'; \
 	yy_c_buf_p = yy_cp;
 
-#define YY_NUM_RULES 1
-#define YY_END_OF_BUFFER 2
-static yyconst short int yy_accept[6] =
+#define YY_NUM_RULES 2
+#define YY_END_OF_BUFFER 3
+static yyconst short int yy_accept[10] =
     {   0,
-        0,    0,    2,    1,    0
+        0,    0,    3,    2,    2,    1,    0,    1,    0
     } ;
 
 static yyconst int yy_ec[256] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    2,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -340,29 +340,29 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst int yy_meta[2] =
+static yyconst int yy_meta[3] =
     {   0,
-        1
+        1,    1
     } ;
 
-static yyconst short int yy_base[7] =
+static yyconst short int yy_base[11] =
     {   0,
-        0,    0,    2,    3,    3,    0
+        0,    0,    6,    7,    2,    7,    0,    7,    7,    4
     } ;
 
-static yyconst short int yy_def[7] =
+static yyconst short int yy_def[11] =
     {   0,
-        6,    6,    5,    5,    0,    5
+       10,    9,    9,    9,    9,    9,    5,    9,    0,    9
     } ;
 
-static yyconst short int yy_nxt[5] =
+static yyconst short int yy_nxt[10] =
     {   0,
-        4,    5,    3,    5
+        5,    6,    7,    8,    4,    9,    3,    9,    9
     } ;
 
-static yyconst short int yy_chk[5] =
+static yyconst short int yy_chk[10] =
     {   0,
-        6,    3,    5,    5
+        2,    2,    5,    5,   10,    3,    9,    9,    9
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -390,7 +390,9 @@ char *yytext;
 
 int yywrap(void);
 int yywrap(void);
-#line 394 "..\\GT1\\frame_lex.c"
+
+    int yylineno;
+#line 396 "..\\GT1\\frame_lex.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -533,6 +535,9 @@ YY_MALLOC_DECL
 #endif
 
 #define YY_RULE_SETUP \
+	if ( yyleng > 0 ) \
+		yy_current_buffer->yy_at_bol = \
+				(yytext[yyleng - 1] == '\n'); \
 	YY_USER_ACTION
 
 YY_DECL
@@ -541,9 +546,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 14 "..\\GT1\\ldir\\frame.l"
+#line 16 "..\\GT1\\ldir\\frame.l"
 
-#line 547 "..\\GT1\\frame_lex.c"
+#line 552 "..\\GT1\\frame_lex.c"
 
 	if ( yy_init )
 		{
@@ -582,6 +587,7 @@ YY_DECL
 		yy_bp = yy_cp;
 
 		yy_current_state = yy_start;
+		yy_current_state += YY_AT_BOL();
 yy_match:
 		do
 			{
@@ -594,13 +600,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 6 )
+				if ( yy_current_state >= 10 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 3 );
+		while ( yy_base[yy_current_state] != 7 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -628,10 +634,15 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 15 "..\\GT1\\ldir\\frame.l"
+#line 17 "..\\GT1\\ldir\\frame.l"
+printf("%4d\t%s", yylineno++, yytext);
+	YY_BREAK
+case 2:
+YY_RULE_SETUP
+#line 19 "..\\GT1\\ldir\\frame.l"
 ECHO;
 	YY_BREAK
-#line 635 "..\\GT1\\frame_lex.c"
+#line 646 "..\\GT1\\frame_lex.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -911,6 +922,7 @@ static yy_state_type yy_get_previous_state()
 	register char *yy_cp;
 
 	yy_current_state = yy_start;
+	yy_current_state += YY_AT_BOL();
 
 	for ( yy_cp = yytext_ptr + YY_MORE_ADJ; yy_cp < yy_c_buf_p; ++yy_cp )
 		{
@@ -923,7 +935,7 @@ static yy_state_type yy_get_previous_state()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 6 )
+			if ( yy_current_state >= 10 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -958,11 +970,11 @@ yy_state_type yy_current_state;
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 6 )
+		if ( yy_current_state >= 10 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 5);
+	yy_is_jam = (yy_current_state == 9);
 
 	return yy_is_jam ? 0 : yy_current_state;
 	}
@@ -1081,6 +1093,7 @@ static int input()
 	*yy_c_buf_p = '\0';	/* preserve yytext */
 	yy_hold_char = *++yy_c_buf_p;
 
+	yy_current_buffer->yy_at_bol = (c == '\n');
 
 	return c;
 	}
@@ -1517,7 +1530,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 15 "..\\GT1\\ldir\\frame.l"
+#line 19 "..\\GT1\\ldir\\frame.l"
 
 int yywrap(void)
 {
