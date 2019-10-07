@@ -1,0 +1,192 @@
+a
+b
+b
+b
+b
+ba
+
+b
+7
+12
+12
+12
+12
+12
+12
+14
+
+swift实现页面跳转（下一页以及返回）
+2017.05.02 10:42:32
+字数 105
+阅读 1532
+拖拽一个view controller
+
+建立两个新的Swift文件，命名为FirstPage和SecondPage
+
+修改两个view controller的继承的类
+
+
+
+
+拖拽添加两个button
+
+右键拖拽首页的button到第二页，在弹出的窗口中选择show
+
+右键拖拽下一页的button到SecondPageViewController.swift中，添加action方法
+
+在方法中添加代码
+
+@IBAction func backClicked(_ sender: UIButton) {
+
+self.dismiss(animated: true, completion: nil)
+
+}
+
+
+顶部
+~~不能再底部了~~~
+
+a
+b
+b
+b
+b
+ba
+
+b
+7
+12
+12
+12
+12
+12
+12
+14
+
+swift实现页面跳转（下一页以及返回）
+2017.05.02 10:42:32
+字数 105
+阅读 1532
+拖拽一个view controller
+
+建立两个新的Swift文件，命名为FirstPage和SecondPage
+
+修改两个view controller的继承的类
+
+
+
+
+拖拽添加两个button
+
+右键拖拽首页的button到第二页，在弹出的窗口中选择show
+
+右键拖拽下一页的button到SecondPageViewController.swift中，添加action方法
+
+在方法中添加代码
+
+@IBAction func backClicked(_ sender: UIButton) {
+
+self.dismiss(animated: true, completion: nil)
+
+}
+
+
+顶部
+~~不能再底部了~~~
+
+a
+b
+b
+b
+b
+ba
+
+b
+7
+12
+12
+12
+12
+12
+12
+14
+
+swift实现页面跳转（下一页以及返回）
+2017.05.02 10:42:32
+字数 105
+阅读 1532
+拖拽一个view controller
+
+建立两个新的Swift文件，命名为FirstPage和SecondPage
+
+修改两个view controller的继承的类
+
+
+
+
+拖拽添加两个button
+
+右键拖拽首页的button到第二页，在弹出的窗口中选择show
+
+右键拖拽下一页的button到SecondPageViewController.swift中，添加action方法
+
+在方法中添加代码
+
+@IBAction func backClicked(_ sender: UIButton) {
+
+self.dismiss(animated: true, completion: nil)
+
+}
+
+
+顶部
+~~不能再底部了~~~
+
+a
+b
+b
+b
+b
+ba
+
+b
+7
+12
+12
+12
+12
+12
+12
+14
+
+swift实现页面跳转（下一页以及返回）
+2017.05.02 10:42:32
+字数 105
+阅读 1532
+拖拽一个view controller
+
+建立两个新的Swift文件，命名为FirstPage和SecondPage
+
+修改两个view controller的继承的类
+
+
+
+
+拖拽添加两个button
+
+右键拖拽首页的button到第二页，在弹出的窗口中选择show
+
+右键拖拽下一页的button到SecondPageViewController.swift中，添加action方法
+
+在方法中添加代码
+
+@IBAction func backClicked(_ sender: UIButton) {
+
+self.dismiss(animated: true, completion: nil)
+
+}
+
+
+顶部
+~~不能再底部了~~~
+
