@@ -26,13 +26,14 @@ int yywrap(void);
 
 %}
 
-%START AA BB CC
+%START AA BB CC DD
 %%
 ^a	{ECHO; BEGIN AA;}
 ^b	{ECHO; BEGIN BB;}
 ^c	{ECHO; BEGIN CC;}
+^d	{ECHO; BEGIN DD;}
 \n	{ECHO; BEGIN 0;}
-<AA>magic	printf("first");
+<AA,DD>magic	printf("first");
 <BB>magic	printf("second");
 <CC>magic	printf("third");
 %%
